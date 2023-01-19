@@ -357,3 +357,50 @@ npm i -g serve
 ```bash
 serve -s out -p 8000
 ```
+
+## API Routes
+
+You can work with any database in the `pages/api/` folder
+
+> Note: Any API route that is placed inside this folder will be accessible like any other page in Next.js
+
+- Create a folder inside the `pages` folder with the name of the API route (e.g. `api/posts`)
+
+### Work with local data
+
+- Create a `data.js` file at the root of the project
+
+```js
+const posts = [
+  {
+    id: 1,
+    title: 'Post 1',
+  },
+  {
+    id: 2,
+    title: 'Post 2',
+  },
+  {
+    id: 3,
+    title: 'Post 3',
+  },
+]
+```
+
+- Import the data in the API route
+
+```js
+import { posts } from '@/data'
+```
+
+- Get the data
+
+```js
+export default function handler(req, res) {
+  res.status(200).json(posts)
+}
+```
+
+> You can now fetch the data as you would with any other API
+
+
