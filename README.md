@@ -341,6 +341,8 @@ export default function Home() {
 
 ## Fetch Data
 
+Next.js let's you choose how to fetch data for each page. It is advised to use `getStaticProps` for most of the pages and `getServerSideProps` for pages with frequently updated data
+
 - **getStaticProps** - is used to fetch data at build time
 
 > Note: During development with `npm run dev`, `getStaticProps` runs on every request
