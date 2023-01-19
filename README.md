@@ -183,3 +183,177 @@ export default function Home() {
 > Be sure that the curly braces are on the same line as the `style` tag: `<style jsx>{`
 >
 > No need to use styled jsx if you use other methods like CSS modules or styled components
+
+## The `_document.js` file
+
+Here you can customize the `html` and `body` tags
+
+> For instance you can add a `lang` attribute to the `html` tag
+
+```jsx
+import Document, { Html, Head, Main, NextScript } from 'next/document'
+
+export default function Document() {
+  return (
+    <Html lang='en'>
+      <Head />
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  )
+}
+```
+
+> Note: This file will be created if you create a new Next.js app with `npx create-next-app`
+
+## Fetch Data
+
+- **getStaticProps** - is used to fetch data at build time
+
+```jsx
+export async function getStaticProps() {
+  const res = await fetch('https://.../posts')
+  const posts = await res.json()
+
+  return {
+    props: {
+      posts,
+    },
+  }
+}
+```
+
+> `posts` will be passed to the component as a prop:
+
+```jsx
+export default function Home({ posts }) {
+  return (
+    <div>
+      {posts.map((post) => (
+        <h3>{post.title}</h3>
+      ))}
+    </div>
+  )
+}
+```
+
+- **getStaticPaths** - is used to specify dynamic routes to pre-render pages based on data
+
+```jsx
+export async function getStaticPaths() {
+  const res = await fetch('https://.../posts')
+  const posts = await res.json()
+
+  const paths = posts.map((post) => ({
+    params: { id: post.id },
+  }))
+
+  return { paths, fallback: false }
+}
+```
+
+- **getServerSideProps** - is used to fetch data on the server on each request
+
+```jsx
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      // props for your component
+    },
+  }
+}
+```
+
+> `getStaticProps` and `getServerSideProps` have a `context` parameter that contains the url `params` object
+>
+> You can use this to fetch data for a specific post (e.g. `context.params.id`)
+
+## Fetch Data on the client
+
+- **useEffect** - is used to fetch data on the client
+
+```jsx
+import { useEffect, useState } from 'react'
+
+export default function Home() {
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    fetch('https://.../posts')
+      .then((res) => res.json())
+      .then((data) => setPosts(data))
+  }, [])
+
+  return (
+    <div>
+      {posts.map((post) => (
+        <h3 key={post.id}>{post.title}</h3>
+      ))}
+    </div>
+  )
+}
+```
+
+## Dynamic Routes
+
+- Create a folder inside the `pages` folder with the name of the dynamic route in square brackets (e.g. `[id]`)
+
+- Create an `index.js` file inside the dynamic route folder
+
+### Dynamic Links
+
+- Create a link with that points to the dynamic route and pass the dynamic value as a prop
+
+```jsx
+import Link from 'next/link'
+
+export default function Post({ post }) {
+  return (
+    <div>
+      <Link href='/posts/[id]' as={`/posts/${post.id}`}>
+        <a>{post.title}</a>
+      </Link>
+    </div>
+  )
+}
+```
+
+> Note: this is usually done inside a `map` function
+
+## Export Static Site
+
+Export a static site with `next export`
+
+> Add an npm script to the `package.json` file:
+
+```json
+"scripts": {
+  "export": "next build && next export"
+}
+```
+
+> Run the script:
+
+```bash
+npm run export
+```
+
+> The static site will be exported to the `out` folder
+>
+> You can deploy this folder to any static site host such as GitHub Pages
+
+#### Build a local server to test the static site
+
+- Install `serve`
+
+```bash
+npm i -g serve
+```
+
+- Run the server
+
+```bash
+serve -s out -p 8000
+```
