@@ -402,5 +402,98 @@ export default function handler(req, res) {
 ```
 
 > You can now fetch the data as you would with any other API
+>
+> Note: Next.js needs absolute paths when fetching data
 
+## Check for `development` mode or `production` mode
 
+Since Next.js needs absolute paths when fetching data, you can check if you are in `development` mode or `production` mode
+
+- Create a `config.js` folder at the root of the project with an `index.js` file inside
+
+```js
+const dev = process.env.NODE_ENV !== 'production'
+
+export const server = dev ? 'http://localhost:3000' : 'https://yourwebsite.com'
+```
+
+- Now you can use `server` as a variable in your code as an absolute path when fetching data
+
+```js
+import { server } from '@/config'
+
+export default function handler(req, res) {
+  fetch(`${server}/api/posts`)
+    .then((res) => res.json())
+    .then((data) => res.status(200).json(data))
+}
+```
+
+## Custom Meta Component
+
+> Note: There is no need to create a custom meta component since we can use the `Head` component from Next.js
+
+A meta component is used to add meta tags to the `head` of the document
+
+- Create a `Meta.js` file inside the `components` folder
+
+```jsx
+import Head from 'next/head'
+
+export default function Meta({ title, keywords, description }) {
+  return (
+    <Head>
+      <meta charSet='utf-8' />
+      <meta name='viewport' content='width=device-width, initial-scale=1' />
+      <link rel='icon' href='/favicon.ico' />
+      <meta name='keywords' content={keywords} />
+      <meta name='description' content={description} />
+      <title>{title}</title>
+    </Head>
+  )
+}
+```
+
+> Tip: You can also use packages such as `next-seo` for this
+
+- Add `defaultProps` to the `Meta` component so that you don't need to add props to it every time you use it
+
+```jsx
+Meta.defaultProps = {
+  title: 'WebDev News',
+  keywords: 'web development, programming',
+  description: 'Get the latest news in web dev',
+}
+```
+
+- Now you can use the `Meta` component in any page (it is common to use it in the `Layout` component)
+
+```jsx
+import Meta from '@/components/Meta'
+
+export default function Layout({ children }) {
+  return (
+    <div>
+      <Meta />
+      {children}
+    </div>
+  )
+}
+```
+
+### Add a specific title to a page
+
+- Import the `Meta` component in the specific page and pass the title as a prop
+
+```jsx
+import Meta from '@/components/Meta'
+
+export default function About() {
+  return (
+    <div>
+      <Meta title='About' />
+      <h1>Welcome to the About Page</h1>
+    </div>
+  )
+}
+```
