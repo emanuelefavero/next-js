@@ -37,6 +37,8 @@ npm install next react react-dom
 
 **Pages folder** - is the only required folder in a Next.js app. All the React components inside pages folder will automatically become routes
 
+> Note: The name of the file will be the route name, use lowercase for the file name and PascalCase for the component name
+
 **Public folder** - contains static assets such as images, files, etc. The files inside public folder can be accessed directly from the root of the application
 
 **Styles folder** - contains stylesheets, here you can add global styles, CSS modules, etc
@@ -94,3 +96,44 @@ export default function Home() {
 ### Give a different title to each page
 
 - Import the `Head` component and put the `title` tag inside it
+
+## The `_app.js` file
+
+Wrap around each page and here is where you would import global styles and put header and footer components
+
+> Note: You could also put the header and footer components inside the `Layout` component
+
+## The `Layout` component
+
+- Create a `Layout` component and wrap around each page with children prop
+
+```jsx
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+
+export default function Layout({ children }) {
+  return (
+    <div>
+      <Header />
+      {children}
+      <Footer />
+    </div>
+  )
+}
+```
+
+- Import the `Layout` component in the `_app.js` file
+
+```jsx
+import Layout from '@/components/Layout'
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
+}
+
+export default MyApp
+```
