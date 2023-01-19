@@ -2,6 +2,24 @@
 
 A Next.js cheat sheet repository
 
+## Table of Contents
+
+- [Create a new Next.js app](#create-a-new-nextjs-app)
+- [Manual Installation](#manual-installation)
+- [Folder Structure](#folder-structure)
+- [Routing](#routing)
+- [Meta tags](#meta-tags)
+- [The `_app.js` file](#the-_appjs-file)
+- [The `Layout` component](#the-layout-component)
+- [Styled JSX](#styled-jsx)
+- [The `_document.js` file](#the-_documentjs-file)
+- [Fetch data](#fetch-data)
+- [Dynamic routes](#dynamic-routes)
+- [Export Static Site](#export-static-site)
+- [API Routes](#api-routes)
+- [Check for `development` mode or `production` mode](#check-for-development-mode-or-production-mode)
+- [Custom Meta Component](#custom-meta-component)
+
 ## Create a new Next.js app
 
 ```bash
