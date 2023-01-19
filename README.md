@@ -15,6 +15,8 @@ A Next.js cheat sheet repository
 - [Tailwind CSS](#tailwind-css)
 - [Styled JSX](#styled-jsx)
 - [The `_document.js` file](#the-_documentjs-file)
+- [The `Image` component](#the-image-component)
+- [The `Script` component](#the-script-component)
 - [Fetch data](#fetch-data)
 - [Dynamic routes](#dynamic-routes)
 - [Export Static Site](#export-static-site)
@@ -298,6 +300,44 @@ export default function Document() {
 ```
 
 > Note: This file will be created if you create a new Next.js app with `npx create-next-app`
+
+## The `Image` component
+
+You can use the `Image` component to add images
+
+> The images will be optimized automatically
+
+```jsx
+import Image from 'next/image'
+
+export default function Home() {
+  return (
+    <div>
+      <Image src='/images/profile.jpg' width={144} height={144} />
+    </div>
+  )
+}
+```
+
+> Note: src, width and height are required
+
+## The `Script` component
+
+You can use the `Script` component to add scripts
+
+```jsx
+import Script from 'next/script'
+
+export default function Home() {
+  return (
+    <div>
+      <Script src='https://code.jquery.com/jquery-3.6.0.min.js' />
+    </div>
+  )
+}
+```
+
+> Note: you can add cdn scripts as well as local scripts in the `public` folder
 
 ## Fetch Data
 
