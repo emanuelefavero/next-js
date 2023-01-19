@@ -11,6 +11,8 @@ A Next.js cheat sheet repository
 - [Meta tags](#meta-tags)
 - [The `_app.js` file](#the-_appjs-file)
 - [The `Layout` component](#the-layout-component)
+- [Sass](#sass)
+- [Tailwind CSS](#tailwind-css)
 - [Styled JSX](#styled-jsx)
 - [The `_document.js` file](#the-_documentjs-file)
 - [Fetch data](#fetch-data)
@@ -167,6 +169,64 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp
+```
+
+## Sass
+
+Next.js has built-in support for Sass
+
+- Install `sass`
+
+```bash
+npm i -D sass
+```
+
+## Tailwind CSS
+
+- Install `tailwindcss`
+
+```bash
+npm install -D tailwindcss autoprefixer postcss
+```
+
+- Create a `tailwind.config.js` file at the root of the project
+
+```bash
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+- Create a `postcss.config.js` file at the root of the project
+
+```bash
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+```
+
+- Add the following to `globals.css`
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+- Import `globals.css` in the `_app.js` file
+
+```jsx
+import '@/styles/globals.css'
 ```
 
 ## Styled JSX
