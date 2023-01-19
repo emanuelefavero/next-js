@@ -18,6 +18,7 @@ A Next.js cheat sheet repository
 - [The `Image` component](#the-image-component)
 - [The `Script` component](#the-script-component)
 - [Fetch data](#fetch-data)
+- [When to use **Static Generation** v.s. **Server-side Rendering**](#when-to-use-static-generation-vs-server-side-rendering)
 - [Dynamic routes](#dynamic-routes)
 - [Export Static Site](#export-static-site)
 - [API Routes](#api-routes)
@@ -430,6 +431,29 @@ export default function Home() {
   )
 }
 ```
+
+## When to use **Static Generation** v.s. **Server-side Rendering**
+
+Use Static Generation whenever possible because it's much faster than Server-side Rendering and the page can be served by CDN.
+
+You should ask yourself:
+
+- Can I pre-render this page ahead of a user's request?
+
+If the answer is yes, then you should choose Static Generation.
+
+- Does the page need to update frequently?
+
+If the answer is yes, then you should choose Server-side Rendering.
+
+You can use Static Generation for many types of pages, including:
+
+- Marketing pages
+- Blog posts
+- E-commerce product listings
+- Help and documentation
+
+You could also skip Server-side Rendering and use client-side JavaScript to fetch data with `useEffect`
 
 ## Dynamic Routes
 
