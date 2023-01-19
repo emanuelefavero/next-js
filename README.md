@@ -343,6 +343,8 @@ export default function Home() {
 
 - **getStaticProps** - is used to fetch data at build time
 
+> Note: During development with `npm run dev`, `getStaticProps` runs on every request
+
 ```jsx
 export async function getStaticProps() {
   const res = await fetch('https://.../posts')
