@@ -73,6 +73,19 @@ The `@` alias is used to import files from the root of the project
 import Header from '@/components/Header'
 ```
 
+To use the `@` alias, add the following to the `jsconfig.json` file at the root of the project
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["*"]
+    }
+  }
+}
+```
+
 ## Routing
 
 - **Link** - is used for client-side routing. It is similar to the HTML `<a>` tag
