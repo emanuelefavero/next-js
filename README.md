@@ -137,3 +137,49 @@ function MyApp({ Component, pageProps }) {
 
 export default MyApp
 ```
+
+## Styled JSX
+
+Styled JSX is a CSS-in-JS library that allows you to write CSS inside a React component
+
+It has two modes: global and scoped
+
+- **Global** - styles are applied globally to the entire application
+
+```jsx
+export default function Home() {
+  return (
+    <>
+      Your JSX here
+      <style jsx global>{`
+        p {
+          color: red;
+        }
+      `}</style>
+    </>
+  )
+}
+```
+
+- **Scoped** - styles are applied only to the component
+
+```jsx
+export default function Home() {
+  return (
+    <>
+      Your JSX here
+      <style jsx>{`
+        p {
+          color: red;
+        }
+      `}</style>
+    </>
+  )
+}
+```
+
+> Note: If in vs-code the syntax highlighting for the `style` tag is not working, you can install the `vscode-styled-components` extension to fix this
+>
+> Be sure that the curly braces are on the same line as the `style` tag: `<style jsx>{`
+>
+> No need to use styled jsx if you use other methods like CSS modules or styled components
