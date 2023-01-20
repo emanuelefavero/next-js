@@ -390,6 +390,8 @@ export async function getStaticPaths() {
 }
 ```
 
+> Note: When `fallback` is `false`, any paths not returned by `getStaticPaths` will result in a 404 page
+
 - **getServerSideProps** - is used to fetch data on the server on each request
 
 ```jsx
