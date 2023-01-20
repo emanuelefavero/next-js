@@ -2,6 +2,12 @@
 
 A Next.js cheat sheet repository
 
+## Example Projects
+
+| Project                                    | Description                             |
+| ------------------------------------------ | --------------------------------------- |
+| [next-js-example-app](next-js-example-app) | A bare-bone example app with local data |
+
 ## Table of Contents
 
 - [Create a new Next.js app](#create-a-new-nextjs-app)
@@ -436,6 +442,31 @@ export default function Home() {
         <h3 key={post.id}>{post.title}</h3>
       ))}
     </div>
+  )
+}
+```
+
+## SWR
+
+> SWR is a React Hooks library for remote data fetching on the client
+>
+> You should use it instead of `useEffect`
+
+```jsx
+import useSWR from 'swr'
+
+export default function Home() {
+  const { data, error } = useSWR('api/user', fetch)
+
+  if (error) return <div>failed to load</div>
+  if (!data) return <div>loading...</div>
+
+  return (
+    <>
+      {data.map((post) => (
+        <h3 key={post.id}>{post.title}</h3>
+      ))}
+    </>
   )
 }
 ```
