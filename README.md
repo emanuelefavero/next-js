@@ -347,6 +347,8 @@ Next.js let's you choose how to fetch data for each page. It is advised to use `
 - **getStaticProps** - is used to fetch data at build time
 
 > Note: During development with `npm run dev`, `getStaticProps` runs on every request
+>
+> `getStaticProps` can only be exported from a page. You can't export it from non-page files
 
 ```jsx
 export async function getStaticProps() {
@@ -409,6 +411,10 @@ export async function getServerSideProps(context) {
 > You can use this to fetch data for a specific post (e.g. `context.params.id`)
 
 ## Fetch Data on the client
+
+> Sometimes it can be beneficial to fetch data on the client instead of on the server.
+>
+> For example, you could fetch all the static data on the server and then fetch the dynamic data on the client such as a user-specific data that changes frequently and is not needed for SEO.
 
 - **useEffect** - is used to fetch data on the client
 
