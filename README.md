@@ -24,6 +24,9 @@ A Next.js cheat sheet repository
 - [The `Image` component](#the-image-component)
 - [The `Script` component](#the-script-component)
 - [Fetch data](#fetch-data)
+- [Example of using `getStaticPaths` and `getStaticProps` together](#example-of-using-getstaticpaths-and-getstaticprops-together)
+- [Fetch Data on the client](#fetch-data-on-the-client)
+- [SWR](#swr)
 - [When to use **Static Generation** v.s. **Server-side Rendering**](#when-to-use-static-generation-vs-server-side-rendering)
 - [Dynamic routes](#dynamic-routes)
 - [Export Static Site](#export-static-site)
@@ -418,6 +421,34 @@ export async function getServerSideProps(context) {
 > `getStaticProps` and `getServerSideProps` have a `context` parameter that contains the url `params` object
 >
 > You can use this to fetch data for a specific post (e.g. `context.params.id`)
+
+### Example of using `getStaticPaths` and `getStaticProps` together
+
+Use `getStaticPaths` to fetch an array of IDs and use `getStaticProps` to fetch data for each product based on the ID
+
+```jsx
+export async function getStaticPaths() {
+  const res = await fetch('https://.../posts')
+  const posts = await res.json()
+
+  const paths = posts.map((post) => ({
+    params: { id: post.id },
+  }))
+
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }) {
+  const res = await fetch(`https://.../posts/${params.id}`)
+  const post = await res.json()
+
+  return {
+    props: {
+      post,
+    },
+  }
+}
+```
 
 ## Fetch Data on the client
 
