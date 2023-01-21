@@ -550,6 +550,18 @@ export async function getStaticProps({ params }) {
 }
 ```
 
+### Custom 404 pages
+
+- Create a `404.js` file inside the `pages` folder
+
+```jsx
+export default function Custom404() {
+  return <h1>404 - Page Not Found</h1>
+}
+```
+
+> Note: You can also create a `500.js` file for the server error page
+
 ## Export Static Site
 
 Export a static site with `next export`
