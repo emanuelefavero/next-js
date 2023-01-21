@@ -399,6 +399,8 @@ export async function getStaticPaths() {
 ```
 
 > Note: When `fallback` is `false`, any paths not returned by `getStaticPaths` will result in a 404 page
+>
+> If `fallback` is `true`, then when a user visit a page that is not pre-rendered, Next.js will generate the page on the fly and return it to the user (useful for sites with frequently updated data like a social network)
 
 - **getServerSideProps** - is used to fetch data on the server on each request
 
