@@ -30,6 +30,7 @@ A Next.js cheat sheet repository
 - [API Routes](#api-routes)
 - [Check for `development` mode or `production` mode](#check-for-development-mode-or-production-mode)
 - [Custom Meta Component](#custom-meta-component)
+- [useRouter Hook](#userouter-hook)
 
 ## Create a new Next.js app
 
@@ -737,3 +738,51 @@ export default function About() {
   )
 }
 ```
+
+## &nbsp;
+
+## useRouter Hook
+
+useRouter is a hook that gives you access to the router object
+
+- Import the `useRouter` hook
+
+```jsx
+import { useRouter } from 'next/router'
+```
+
+- Use the `useRouter` hook
+
+```jsx
+const router = useRouter()
+```
+
+- Get the query
+
+```jsx
+const router = useRouter()
+const { query } = router
+```
+
+- Get the query with destructuring
+
+```jsx
+const {
+  query: { id },
+} = useRouter()
+```
+
+useRouter main properties:
+
+- `pathname` - Current route. That is the path of the page in `pages`
+- `route` - Current route with the query string
+- `query` - Query string section of URL parsed as an object
+- `asPath` - String of the actual path (including the query) shown in the browser
+
+&nbsp;
+
+---
+
+&nbsp;
+
+[**Go To Top &nbsp; ⬆️**](#next-js)
