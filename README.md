@@ -34,6 +34,7 @@ A Next.js cheat sheet repository
 - [Check for `development` mode or `production` mode](#check-for-development-mode-or-production-mode)
 - [Custom Meta Component](#custom-meta-component)
 - [useRouter Hook](#userouter-hook)
+- [Redirects](#redirects)
 
 ## Create a new Next.js app
 
@@ -809,6 +810,28 @@ useRouter main properties:
 - `route` - Current route with the query string
 - `query` - Query string section of URL parsed as an object
 - `asPath` - String of the actual path (including the query) shown in the browser
+
+## Redirects
+
+To redirect a user to another page, you can use `redirects` on `next.config.js`
+
+```js
+module.exports = {
+  async redirects() {
+    return [
+      {
+        source: '/about',
+        destination: '/',
+        permanent: false,
+      },
+    ]
+  },
+}
+```
+
+> Note: `permanent: true` will tell the browser to cache the redirect forever. That means that if the user goes to the `/about` page, the browser will redirect the user to the `/` page without making a request to the server
+>
+> TIP: Do not use `permanent: true` for redirects that are not permanent
 
 &nbsp;
 
