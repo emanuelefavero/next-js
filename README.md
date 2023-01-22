@@ -833,6 +833,13 @@ module.exports = {
 >
 > TIP: Do not use `permanent: true` for redirects that are not permanent
 
+### Redirects HTTP status codes
+
+- `308` - Permanent Redirect
+- `307` - Temporary Redirect
+
+> Note: `308` replaces `301`, `307` replaces `302`
+
 &nbsp;
 
 ---
