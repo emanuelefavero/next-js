@@ -56,9 +56,17 @@ Add the following to the `.eslintrc.json` file
 ```json
 {
   // "extends": ["next/core-web-vitals"]
-  "extends": ["plugin:@next/next/recommended"],
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "plugin:@next/next/recommended",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": 2020
   },
 
   "env": {
