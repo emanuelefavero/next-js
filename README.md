@@ -11,6 +11,7 @@ A Next.js cheat sheet repository
 ## Table of Contents
 
 - [Create a new Next.js app](#create-a-new-nextjs-app)
+- [ESLint](#eslint)
 - [Manual Installation](#manual-installation)
 - [Folder Structure](#folder-structure)
 - [Routing](#routing)
@@ -46,6 +47,24 @@ npx create-next-app
 
 ```bash
 npx create-next-app --typeScript --eslint --use-npm
+```
+
+## ESLint
+
+Add the following to the `.eslintrc.json` file
+
+```json
+{
+  // "extends": ["next/core-web-vitals"]
+  "extends": ["plugin:@next/next/recommended"],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+
+  "env": {
+    "es6": true
+  }
+}
 ```
 
 ## Manual Installation
@@ -217,6 +236,8 @@ module.exports = {
   plugins: [],
 }
 ```
+
+> Note: If you are using the `src` folder, change the path to `./src/pages/**/*.{js,ts,jsx,tsx}` and `./src/components/**/*.{js,ts,jsx,tsx}`
 
 - Create a `postcss.config.js` file at the root of the project
 
