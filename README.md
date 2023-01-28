@@ -36,6 +36,7 @@ A Next.js cheat sheet repository
 - [Check for `development` mode or `production` mode](#check-for-development-mode-or-production-mode)
 - [Custom Meta Component](#custom-meta-component)
 - [useRouter Hook](#userouter-hook)
+- [useRouter Redirect](#userouter-redirect)
 - [Redirects](#redirects)
 
 ## Create a new Next.js app
@@ -863,6 +864,23 @@ useRouter main properties:
 - `route` - Current route with the query string
 - `query` - Query string section of URL parsed as an object
 - `asPath` - String of the actual path (including the query) shown in the browser
+
+## useRouter Redirect
+
+- Import the `useRouter` hook
+
+```jsx
+import { useRouter } from 'next/router'
+```
+
+- Use the `useRouter` hook to redirect the user to home page
+
+```jsx
+const router = useRouter()
+router.push('/')
+```
+
+> Note: You can for instance use this hook in a `404` page to redirect the user to the home page after 3 seconds
 
 ## Redirects
 
