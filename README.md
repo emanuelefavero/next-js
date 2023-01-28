@@ -30,6 +30,7 @@ A Next.js cheat sheet repository
 - [SWR](#swr)
 - [When to use **Static Generation** v.s. **Server-side Rendering**](#when-to-use-static-generation-vs-server-side-rendering)
 - [Dynamic routes](#dynamic-routes)
+- [Custom 404 pages](#custom-404-pages)
 - [Export Static Site](#export-static-site)
 - [API Routes](#api-routes)
 - [Check for `development` mode or `production` mode](#check-for-development-mode-or-production-mode)
@@ -612,7 +613,7 @@ export async function getStaticProps({ params }) {
 }
 ```
 
-### Custom 404 pages
+## Custom 404 pages
 
 - Create a `404.js` file inside the `pages` folder
 
