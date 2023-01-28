@@ -361,7 +361,30 @@ export default function Home() {
 }
 ```
 
-> Note: src, width and height are required
+> Note: src, width and height are required, alt is recommended
+
+- if you use a remote image, you need to add the domain to the `next.config.js` file
+
+```bash
+images: {
+    domains: ['images.pexels.com'],
+  },
+```
+
+- or in Next.js 12.4.0:
+
+```bash
+images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'example.com',
+        port: '',
+        pathname: '/account123/**',
+      },
+    ],
+  },
+```
 
 ## The `Script` component
 
